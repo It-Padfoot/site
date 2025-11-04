@@ -16,6 +16,7 @@ body {
     background-color: var(--dark-bg-color);
     color: var(--text-color-dark);
     line-height: 1.6;
+    overflow-x: hidden; /* Предотвращаем горизонтальный скролл из-за анимаций */
 }
 
 header {
@@ -66,6 +67,14 @@ main {
 section {
     padding: 6rem 5%;
     text-align: center;
+    opacity: 0; /* Скрываем секции для анимации */
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .hero {
@@ -73,6 +82,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: linear-gradient(180deg, var(--dark-bg-color) 70%, var(--card-bg-color) 100%);
 }
 
 .hero-content h1 {
@@ -96,11 +106,14 @@ section {
     text-decoration: none;
     font-weight: 700;
     border-radius: 8px;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.2);
 }
 
 .cta-button:hover {
     background-color: var(--primary-hover-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(74, 144, 226, 0.3);
 }
 
 .features {
@@ -123,6 +136,15 @@ h2 {
     background-color: var(--dark-bg-color);
     padding: 2rem;
     border-radius: 12px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
 .feature-item h3 {
@@ -151,6 +173,33 @@ video {
 
 .contact {
     background-color: var(--card-bg-color);
+}
+
+.about {
+    background-color: var(--card-bg-color);
+}
+
+.about-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.fasie-logo {
+    max-width: 300px;
+    height: auto;
+    filter: brightness(0.9);
+}
+
+.support-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    max-width: 800px;
+    opacity: 0.9;
+    text-align: left;
 }
 
 form {
@@ -187,9 +236,64 @@ form button:hover {
 
 footer {
     text-align: center;
-    padding: 2rem 5%;
+    padding: 3rem 5%;
     background-color: var(--dark-bg-color);
     border-top: 1px solid var(--card-bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.footer-support {
+    max-width: 900px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.fasie-logo {
+    max-width: 280px;
+    height: auto;
+    filter: brightness(0.8);
+}
+
+.support-text {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    max-width: 750px;
+    opacity: 0.7;
+    text-align: left;
+}
+
+.footer-divider {
+    width: 80%;
+    max-width: 800px;
+    height: 1px;
+    background-color: var(--card-bg-color);
+    margin: 1rem 0;
+}
+
+.contact-info {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.contact-info p {
+    margin: 0.3rem 0;
+}
+
+.contact-info a {
+    color: var(--text-color-dark);
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
 }
 
 @media (max-width: 768px) {
@@ -206,5 +310,15 @@ footer {
     form input {
         width: 100%;
         max-width: 400px;
+    }
+    .fasie-logo {
+        max-width: 220px;
+    }
+    .support-text {
+        font-size: 0.85rem;
+        text-align: center;
+    }
+    .footer-support {
+        flex-direction: column;
     }
 }
